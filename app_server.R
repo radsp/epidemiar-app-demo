@@ -27,6 +27,8 @@ server <-function(input, output, session) {
   
   observeEvent(input$run_model, {
     
+    show_modal_spinner(text = "Calculating ....... this may take several minutes")
+    
     pfm_env_var <- tibble(environ_var_code = input$env_indi)
     
     pfm_report_settings <- 
@@ -68,6 +70,8 @@ server <-function(input, output, session) {
                       report_settings = pfm_report_settings)
     
     # return(out_report)
+    
+    remove_modal_spinner()
     
   })
   
@@ -184,6 +188,8 @@ server <-function(input, output, session) {
   
   output$ts_output <- renderPlot({
     
+    
+    
     if(!is.null(out_report$data)) {
       y <- out_report$data
       
@@ -282,6 +288,8 @@ server <-function(input, output, session) {
         woreda_panel_theme
       
       print(control_chart)
+      
+      
     }
     
    

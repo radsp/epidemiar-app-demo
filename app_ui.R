@@ -7,6 +7,7 @@ ui <- fluidPage(
   tags$head(tags$style(HTML('#Sidebar {width: 1400px;}'))),
   
   navbarPage(HTML("EPIDEMIAR"),
+            
     tabPanel("Tool",
       div(id = "Sidebar", 
           sidebarPanel(
@@ -19,6 +20,7 @@ ui <- fluidPage(
                      bsTooltip("hide_sidebar", title = "Hide panel", 
                                 placement = "top", trigger = "hover"))
             ),
+           
             br(),
             hr(style = "border-top: 1px solid #9aa5a6;"),
             HTML("<h4>Input Data</h4>"),
@@ -53,7 +55,7 @@ ui <- fluidPage(
             selectInput(inputId = "fc_splines", label = "Spline function used to model long-term trend and lagged environmental variable",
                         choices = c("Thin plate" = "tp"), selected = "tp"),
             checkboxInput(inputId = "fc_cyclicals", label = "Include seasonal cyclical in the model", value = TRUE),
-            checkboxInput(inputId = "env_anomalies", label = "Include environmental anomaly", value = TRUE),
+            # checkboxInput(inputId = "env_anomalies", label = "Include environmental anomaly", value = TRUE),
             numericInput(inputId = "fc_future_period", label = "Forecast span (in months)", 
                          value = 2, min = 2, max = 2),
             br(),
@@ -72,6 +74,8 @@ ui <- fluidPage(
                                   icon = icon("arrow-right"), size = "sm", color = "default")) #)
               
           )),
+          
+          # add_busy_spinner(spin = "cube-grid"),
           
           column(width = 10, offset = 1, 
                  

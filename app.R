@@ -4,7 +4,7 @@
 if (!require("pacman")) install.packages("pacman")
 
 pacman::p_load(dplyr, knitr, lubridate, readr, readxl, tidyr, tools, forcats, ggplot2,
-               shiny, shinyjs, shinythemes, shinyWidgets, shinyBS, leaflet)
+               shiny, shinyjs, shinythemes, shinyWidgets, shinyBS, leaflet, shinybusy)
 
 devtools::install_github("EcoGRAPH/clusterapply")
 

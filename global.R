@@ -7,7 +7,7 @@ ctry_selection <- "Awesome country"
 id_table <- read_csv("data/mdive_data_id.csv")
 
 for(i in 1:nrow(id_table)) {
-  download_civis(id_table$id[i], file = paste(id_table$name[i], ".rds", sep = "", overwrite = TRUE))
+  download_civis(id_table$id[i], file = paste(id_table$name[i], ".rds", sep = ""), overwrite = TRUE)
 }
 
 epi_data <- readRDS("epi_data.RDS")

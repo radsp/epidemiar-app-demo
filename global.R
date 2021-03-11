@@ -2,8 +2,18 @@
 # UI parameters -------------------------------------------------------------
 
 # Ideally country selection is filtered right away based on user permission
-ctry_selection <- "The best country"
+ctry_selection <- "Awesome country"
 
+id_table <- read_csv("data/mdive_data_id.csv")
+
+for(i in 1:nrow(id_table)) {
+  download_civis(id_table$id[i], file = paste(id_table$name[i], ".rds", sep = "", overwrite = TRUE))
+}
+
+epi_data <- readRDS("epi_data.RDS")
+env_data <- readRDS("env_data.RDS")
+env_ref_data <- readRDS("env_ref_data.RDS")
+env_info <- readRDS("env_info.RDS")
 
 # epi_data <- read_civis(sql("SELECT * FROM staging_pmihq.epidemiar_demo_epi_data")) %>%
 #   mutate(obs_date = as.Date(as.character(obs_date)))
@@ -19,27 +29,27 @@ ctry_selection <- "The best country"
 report_woredas <- read_csv("data/amhara_woredas.csv") %>%
   filter(report == 1)
 
-# read in climatology / environmental reference data
-env_ref_data <- read_csv("data/env_ref_data_2002_2018.csv", col_types = cols())
-
-# read in environmental info file
-env_info <- read_xlsx("data/environ_info.xlsx", na = "NA")
-
-
-# read & process case data needed for report
-epi_data <- corral_epidemiological(report_woreda_names = report_woredas$woreda_name)
-
-# read & process environmental data for woredas in report
-env_data <- corral_environment(report_woredas = report_woredas)
-
-## Optional: For slight speed increase,
-# date filtering to remove older environmental data.
-# older env data was included to demo epidemiar::env_daily_to_ref() function.
-# in make_date_yw() weekday is always end of the week, 7th day
-env_start_date <- epidemiar::make_date_yw(year = 2012, week = 1, weekday = 7)
-#filter data
-env_data <- env_data %>% filter(obs_date >= env_start_date)
-#force garbage collection to free up memory
+# # read in climatology / environmental reference data
+# env_ref_data <- read_csv("data/env_ref_data_2002_2018.csv", col_types = cols())
+# 
+# # read in environmental info file
+# env_info <- read_xlsx("data/environ_info.xlsx", na = "NA")
+# 
+# 
+# # read & process case data needed for report
+# epi_data <- corral_epidemiological(report_woreda_names = report_woredas$woreda_name)
+# 
+# # read & process environmental data for woredas in report
+# env_data <- corral_environment(report_woredas = report_woredas)
+# 
+# ## Optional: For slight speed increase,
+# # date filtering to remove older environmental data.
+# # older env data was included to demo epidemiar::env_daily_to_ref() function.
+# # in make_date_yw() weekday is always end of the week, 7th day
+# env_start_date <- epidemiar::make_date_yw(year = 2012, week = 1, weekday = 7)
+# #filter data
+# env_data <- env_data %>% filter(obs_date >= env_start_date)
+# #force garbage collection to free up memory
 
 
 # 1. Set up general report and epidemiological parameters ----------

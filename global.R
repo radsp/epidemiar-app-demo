@@ -10,10 +10,10 @@ for(i in 1:nrow(id_table)) {
   download_civis(id_table$id[i], file = paste(id_table$name[i], ".rds", sep = ""), overwrite = TRUE)
 }
 
-epi_data <- readRDS("epi_data.RDS")
-env_data <- readRDS("env_data.RDS")
-env_ref_data <- readRDS("env_ref_data.RDS")
-env_info <- readRDS("env_info.RDS")
+epi_data <- readRDS("epi_data.rds")
+env_data <- readRDS("env_data.rds")
+env_ref_data <- readRDS("env_ref_data.rds")
+env_info <- readRDS("env_info.rds")
 
 # epi_data <- read_civis(sql("SELECT * FROM staging_pmihq.epidemiar_demo_epi_data")) %>%
 #   mutate(obs_date = as.Date(as.character(obs_date)))

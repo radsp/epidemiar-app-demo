@@ -227,7 +227,7 @@ server <-function(input, output, session) {
                             #put in correct order
                             ordered = TRUE)) 
       
-      this_woreda <- input$this_woreda
+      this_woreda <- if_else(is.null(input$this_woreda), "District 1", input$this_woreda)
       this_modeling_data <- y4gg %>% filter(woreda_name == this_woreda) %>%
         mutate(lab = factor(lab,
                             levels = c("Early Detection Alert", "Early Warning Alert", "Alert Threshold", 

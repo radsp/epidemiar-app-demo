@@ -27,7 +27,7 @@ server <-function(input, output, session) {
   
   observeEvent(input$run_model, {
     
-    show_modal_spinner(text = "Calculating ....... this may take several minutes")
+    # show_modal_spinner(text = "Calculating ....... this may take several minutes")
     
     pfm_env_var <- tibble(environ_var_code = input$env_indi)
     

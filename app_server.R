@@ -69,7 +69,7 @@ server <-function(input, output, session) {
                       #other settings
                       report_settings = pfm_report_settings)
     
-    # return(out_report)
+    return(out_report)
     
     remove_modal_spinner()
     
@@ -106,6 +106,9 @@ server <-function(input, output, session) {
   
   output$out_map <- renderLeaflet({
     if(!is.null(out_report$data)) {
+      
+      remove_modal_spinner()
+      
       y <- out_report$data
       
       #woredas used in report data
